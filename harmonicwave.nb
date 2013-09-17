@@ -7,36 +7,50 @@ Cell[BoxData[
     RowBox[{"CellContext", "\[Rule]", "Notebook"}]}], "]"}], ";"}]], "Input"],
 
 Cell["\<\
-The following command plots two periods of a square wave. This can be \
-contrasted with the Fourier polynomial approximation of the square wave given \
-later in the notebook.\
+The following command plots two periods of a square wave, along with a \
+Fourier polynomial approximation of the square wave consisting of NumHar \
+harmonics. This can be compared with the Fourier polynomial approximation of \
+the square wave given at the end of the notebook.\
 \>", "Text"],
 
 Cell[BoxData[
- RowBox[{"Plot", "[", 
-  RowBox[{
-   RowBox[{"{", 
+ RowBox[{
+  RowBox[{"NumHar", " ", "=", " ", "1"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
     RowBox[{
-     RowBox[{"SquareWave", "[", "x", "]"}], ",", 
-     RowBox[{"Sum", "[", 
-      RowBox[{
-       RowBox[{"4", 
-        RowBox[{
-         RowBox[{"Sin", "[", 
-          RowBox[{"2", "Pi", " ", "x", 
+    "NumHar", " ", "is", " ", "the", " ", "number", " ", "of", " ", 
+     "harmonics", " ", "in", " ", "the", " ", "Fourier", " ", "approximation",
+      " ", "of", " ", "the", " ", "square", " ", "wave"}], ",", " ", 
+    RowBox[{"to", " ", "be", " ", "plotted", " ", "below"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"SquareWave", "[", "x", "]"}], ",", 
+      RowBox[{"Sum", "[", 
+       RowBox[{
+        RowBox[{"4", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"2", "Pi", " ", "x", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", "k"}], "+", "1"}], ")"}]}], "]"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"Pi", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", "k"}], "+", "1"}], ")"}]}], ")"}]}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", 
+          RowBox[{
            RowBox[{"(", 
-            RowBox[{
-             RowBox[{"2", "k"}], "+", "1"}], ")"}]}], "]"}], "/", 
-         RowBox[{"(", 
-          RowBox[{"Pi", 
-           RowBox[{"(", 
-            RowBox[{
-             RowBox[{"2", "k"}], "+", "1"}], ")"}]}], ")"}]}]}], ",", 
-       RowBox[{"{", 
-        RowBox[{"k", ",", "0", ",", 
-         RowBox[{"-", "1"}]}], "}"}]}], "]"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"x", ",", "0", ",", "2"}], "}"}]}], "]"}]], "Input"],
+            RowBox[{"NumHar", "-", "1"}], ")"}], "/", "2"}]}], "}"}]}], 
+       "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "2"}], "}"}]}], "]"}]}]], "Input"],
 
 Cell["\<\
 In the following line, remove the semicolon to see a list of sound files that \
@@ -203,33 +217,34 @@ Cell[BoxData[{
     "The", " ", "frequency", " ", "range", " ", "on", " ", "the", " ", "x"}], 
     "-", "axis"}], " ", "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"EnergyScale", "=", "1"}], ";", " ", 
+  RowBox[{
+   RowBox[{"EnergyScale", "=", "1"}], ";"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{
      RowBox[{"The", " ", "scale", " ", "of", " ", "the", " ", "y"}], "-", 
      "axis"}], ",", " ", 
     RowBox[{"as", " ", "a", " ", "factor", " ", "of", " ", "MaxEnergy"}]}], 
-   " ", "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"ListPlot", "[", 
-   RowBox[{
-    RowBox[{"Take", "[", 
-     RowBox[{
-      RowBox[{"Abs", "[", "FourierSeq", "]"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", 
-        RowBox[{"Floor", "[", 
-         RowBox[{"FreqRange", " ", 
-          RowBox[{"NumSmpls", "/", "SmplRate"}]}], "]"}]}], "}"}]}], "]"}], 
-    ",", 
-    RowBox[{"DataRange", "\[Rule]", 
+   " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"Take", "[", 
+    RowBox[{
+     RowBox[{"Abs", "[", "FourierSeq", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "FreqRange"}], "}"}]}], ",", 
-    RowBox[{"PlotRange", "\[Rule]", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", 
-       RowBox[{"EnergyScale", " ", "MaxEnergy"}]}], "}"}]}]}], 
-   "]"}]}]}], "Input"],
+      RowBox[{"1", ",", 
+       RowBox[{"Floor", "[", 
+        RowBox[{"FreqRange", " ", 
+         RowBox[{"NumSmpls", "/", "SmplRate"}]}], "]"}]}], "}"}]}], "]"}], 
+   ",", 
+   RowBox[{"DataRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "FreqRange"}], "}"}]}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"EnergyScale", " ", "MaxEnergy"}]}], "}"}]}]}], 
+  "]"}]}], "Input"],
 
 Cell["\<\
 This final block (approximately) reconstructs the original sound file \
@@ -285,19 +300,22 @@ Cell[BoxData[{
      "semicolon", " ", "to", " ", "see", " ", "this", " ", "max"}], " ", 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Period", "=", 
-   RowBox[{"N", "[", 
-    RowBox[{"SmplRate", "/", "Fundamental"}], "]"}]}], ";", " ", 
+  RowBox[{
+   RowBox[{"Period", "=", 
+    RowBox[{"N", "[", 
+     RowBox[{"SmplRate", "/", "Fundamental"}], "]"}]}], ";"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{"Period", ",", " ", 
-    RowBox[{"in", " ", "number", " ", "of", " ", "samples"}]}], " ", "*)"}], 
-  "\[IndentingNewLine]", 
+    RowBox[{"in", " ", "number", " ", "of", " ", "samples"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"Zero", "=", 
    RowBox[{"0", "*", 
     RowBox[{"Range", "[", 
      RowBox[{"1", ",", "NumSmpls"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"HarmonicSum", "=", "Zero"}], ";", " ", 
+  RowBox[{
+   RowBox[{"HarmonicSum", "=", "Zero"}], ";"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{"An", " ", 
@@ -307,89 +325,92 @@ Cell[BoxData[{
     "HarmonicSum", " ", "will", " ", "contain", " ", "only", " ", "the", " ", 
      "components", " ", "of", " ", "the", " ", "Fourier", " ", 
      "transformation", " ", "corresponding", " ", "to", " ", "the", " ", 
-     "first", " ", "NumHar", " ", "harmonics"}]}], " ", "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"For", "[", 
+     "first", " ", "NumHar", " ", "harmonics"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", "NumHar"}], ",", 
+   RowBox[{"i", "++"}], ",", 
    RowBox[{
-    RowBox[{"i", "=", "1"}], ",", 
-    RowBox[{"i", "\[LessEqual]", "NumHar"}], ",", 
-    RowBox[{"i", "++"}], ",", 
-    RowBox[{
-     RowBox[{"Ind1", "=", 
+    RowBox[{"Ind1", "=", 
+     RowBox[{
+      RowBox[{"i", " ", 
+       RowBox[{"Round", "[", 
+        RowBox[{"Fundamental", " ", 
+         RowBox[{"NumSmpls", " ", "/", " ", "SmplRate"}]}], "]"}]}], "+", 
+      "1"}]}], ";", 
+    RowBox[{"Ind2", " ", "=", " ", 
+     RowBox[{"NumSmpls", " ", "+", " ", "2", " ", "-", " ", "Ind1"}]}], ";", 
+    RowBox[{"Add", "=", 
+     RowBox[{"Join", "[", 
       RowBox[{
-       RowBox[{"i", " ", 
-        RowBox[{"Round", "[", 
-         RowBox[{"Fundamental", " ", 
-          RowBox[{"NumSmpls", " ", "/", " ", "SmplRate"}]}], "]"}]}], "+", 
-       "1"}]}], ";", 
-     RowBox[{"Ind2", " ", "=", " ", 
-      RowBox[{"NumSmpls", " ", "+", " ", "2", " ", "-", " ", "Ind1"}]}], ";", 
-     RowBox[{"Add", "=", 
-      RowBox[{"Join", "[", 
-       RowBox[{
-        RowBox[{"0", "*", 
-         RowBox[{"Range", "[", 
-          RowBox[{"1", ",", 
-           RowBox[{"Ind1", "-", "Tol", "-", "1"}]}], "]"}]}], ",", 
-        RowBox[{"Take", "[", 
-         RowBox[{"FourierSeq", ",", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"Ind1", "-", "Tol"}], ",", 
-            RowBox[{"Ind1", "+", "Tol"}]}], "}"}]}], "]"}], ",", 
-        RowBox[{"0", "*", 
-         RowBox[{"Range", "[", 
+       RowBox[{"0", "*", 
+        RowBox[{"Range", "[", 
+         RowBox[{"1", ",", 
+          RowBox[{"Ind1", "-", "Tol", "-", "1"}]}], "]"}]}], ",", 
+       RowBox[{"Take", "[", 
+        RowBox[{"FourierSeq", ",", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{"Ind1", "+", "Tol", "+", "1"}], ",", 
-           RowBox[{"Ind2", "-", "Tol", "-", "1"}]}], "]"}]}], ",", 
-        RowBox[{"Take", "[", 
-         RowBox[{"FourierSeq", ",", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"Ind2", "-", "Tol"}], ",", 
-            RowBox[{"Ind2", "+", "Tol"}]}], "}"}]}], "]"}], ",", 
-        RowBox[{"0", "*", 
-         RowBox[{"Range", "[", 
+           RowBox[{"Ind1", "-", "Tol"}], ",", 
+           RowBox[{"Ind1", "+", "Tol"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"0", "*", 
+        RowBox[{"Range", "[", 
+         RowBox[{
+          RowBox[{"Ind1", "+", "Tol", "+", "1"}], ",", 
+          RowBox[{"Ind2", "-", "Tol", "-", "1"}]}], "]"}]}], ",", 
+       RowBox[{"Take", "[", 
+        RowBox[{"FourierSeq", ",", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{"Ind2", "+", "Tol", "+", "1"}], ",", "NumSmpls"}], 
-          "]"}]}]}], "]"}]}], ";", 
-     RowBox[{"HarmonicSum", "=", 
-      RowBox[{"HarmonicSum", "+", "Add"}]}]}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
+           RowBox[{"Ind2", "-", "Tol"}], ",", 
+           RowBox[{"Ind2", "+", "Tol"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"0", "*", 
+        RowBox[{"Range", "[", 
+         RowBox[{
+          RowBox[{"Ind2", "+", "Tol", "+", "1"}], ",", "NumSmpls"}], 
+         "]"}]}]}], "]"}]}], ";", 
+    RowBox[{"HarmonicSum", "=", 
+     RowBox[{"HarmonicSum", "+", "Add"}]}]}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"Perc", "=", "0.3"}], ";", " ", 
-   RowBox[{"(*", " ", 
-    RowBox[{
-    "Perc", " ", "is", " ", "the", " ", "percentage", " ", "of", " ", "the", 
-     " ", "way", " ", "through", " ", "the", " ", "file", " ", "to", " ", 
-     "begin", " ", "plotting", " ", "the", " ", "waveform"}], " ", "*)"}], 
-   "\[IndentingNewLine]", 
+   RowBox[{"Perc", "=", "0.3"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Perc", " ", "is", " ", "the", " ", "percentage", " ", "of", " ", "the", 
+    " ", "way", " ", "through", " ", "the", " ", "file", " ", "to", " ", 
+    "begin", " ", "plotting", " ", "the", " ", "waveform"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{"ReconData", "=", 
     RowBox[{"Re", "@", 
      RowBox[{"InverseFourier", "[", 
       RowBox[{"Take", "[", 
        RowBox[{"HarmonicSum", ",", 
         RowBox[{"{", 
-         RowBox[{"1", ",", "NumSmpls"}], "}"}]}], "]"}], "]"}]}]}], ";", " ", 
-   RowBox[{"(*", " ", 
-    RowBox[{
-    "ReconData", " ", "is", " ", "the", " ", "inverse", " ", "Fourier", " ", 
-     "transform", " ", "of", " ", "the", " ", "Fourier", " ", "data", " ", 
-     "restricted", " ", "only", " ", "to", " ", "the", " ", "first", " ", 
-     "NumHar", " ", 
-     RowBox[{"harmonics", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"ListPlot", "[", 
-    RowBox[{"Take", "[", 
-     RowBox[{"ReconData", ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Round", "[", 
-         RowBox[{"Perc", " ", "NumSmpls"}], "]"}], ",", 
-        RowBox[{"Round", "[", 
-         RowBox[{
-          RowBox[{"Perc", " ", "NumSmpls"}], " ", "+", " ", 
-          RowBox[{"2", "Period"}]}], "]"}]}], "}"}]}], "]"}], "]"}]}], " ", 
+         RowBox[{"1", ",", "NumSmpls"}], "}"}]}], "]"}], "]"}]}]}], ";"}], 
+  " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "ReconData", " ", "is", " ", "the", " ", "inverse", " ", "Fourier", " ", 
+    "transform", " ", "of", " ", "the", " ", "Fourier", " ", "data", " ", 
+    "restricted", " ", "only", " ", "to", " ", "the", " ", "first", " ", 
+    "NumHar", " ", 
+    RowBox[{"harmonics", "."}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"Take", "[", 
+    RowBox[{"ReconData", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Round", "[", 
+        RowBox[{"Perc", " ", "NumSmpls"}], "]"}], ",", 
+       RowBox[{"Round", "[", 
+        RowBox[{
+         RowBox[{"Perc", " ", "NumSmpls"}], " ", "+", " ", 
+         RowBox[{"2", "Period"}]}], "]"}]}], "}"}]}], "]"}], "]"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{
@@ -428,7 +449,7 @@ Cell[BoxData[{
    " ", "*)"}]}]}], "Input"]
 },
 WindowSize->{707, 827},
-WindowMargins->{{45, Automatic}, {Automatic, 9}},
+WindowMargins->{{435, Automatic}, {Automatic, 50}},
 PrivateNotebookOptions->{"FileOutlineCache"->False,
 "VersionedStylesheet"->{"Default.nb"[8.] -> False}},
 CellContext->Notebook,
